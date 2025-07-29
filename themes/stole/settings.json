@@ -1,0 +1,23 @@
+{
+  "size": [510, 510],
+  "sprites": {
+    "stole1.png": {
+      "board": {
+        "offset": [245, 180],
+        "border": [4, 4],
+        "square": [63, 63]
+      },
+      "pieces": {
+        "wk-ws": []
+      },
+      "squares": {
+
+      }
+
+
+
+    }
+  }
+
+
+}

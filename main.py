@@ -3,21 +3,24 @@ import chess
 
 from PIL import Image
 
+theme = 'stole'
+file0 = 'stole1.png'
+
 # Carica il file JSON
-with open('themes/fritz2/settings.json', 'r') as f:
+with open('themes/'+theme+'/settings.json', 'r') as f:
     dati = json.load(f)
 
 board = chess.Board("rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1")
 
 larghezza, altezza = dati['size']
-board_offset_x, board_offset_y = dati['sprites']['fritz_000.png']['board']['offset']
-board_border_x, board_border_y = dati['sprites']['fritz_000.png']['board']['border']
-board_square_width, board_square_height = dati['sprites']['fritz_000.png']['board']['square']
+board_offset_x, board_offset_y = dati['sprites'][file0]['board']['offset']
+board_border_x, board_border_y = dati['sprites'][file0]['board']['border']
+board_square_width, board_square_height = dati['sprites'][file0]['board']['square']
 
 immagine = Image.new('RGB', (larghezza, altezza), 'white')
 
 # Carica lo sprite sheet
-sprite_sheet = Image.open("themes/fritz2/fritz_000.png")
+sprite_sheet = Image.open("themes/"+theme+"/"+ file0)
 
 # Estrai lo sprite di base (sfondo/terreno)
 sprite_base = sprite_sheet.crop((board_offset_x, board_offset_y, board_offset_x+larghezza, board_offset_y+altezza))  # Esempio: primo sprite 64x64
@@ -44,8 +47,7 @@ for rank in range(8):
             selector = [0, 4]
 
         if piece and piece.piece_type == chess.KING:
-            print("k")
-            selector = [3, 0]
+            selector = [4, 0]
 
         square_picture = sprite_sheet.crop((
             board_offset_x + board_border_x + selector[0] * board_square_width,
@@ -53,10 +55,11 @@ for rank in range(8):
             board_offset_x + board_border_x + selector[0] * board_square_width + board_square_width,
             board_offset_y + board_border_y + selector[1] * board_square_height + board_square_height
         ))
-        immagine.paste(square_picture, (
-            board_border_x + file * board_square_width,
-            board_border_y + rank * board_square_height
-        ))
+        if True:
+            immagine.paste(square_picture, (
+                board_border_x + file * board_square_width,
+                board_border_y + rank * board_square_height
+            ))
 
 
 # Salva il risultato
