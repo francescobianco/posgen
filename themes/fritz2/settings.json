@@ -1,0 +1,23 @@
+{
+  "size": [330, 330],
+  "sprites": {
+    "fritz_000.png": {
+      "board": {
+        "offset": [11, 35],
+        "border": [5, 5],
+        "square": [40, 40]
+      },
+      "pieces": {
+        "wk-ws": []
+      },
+      "squares": {
+
+      }
+
+
+
+    }
+  }
+
+
+}
